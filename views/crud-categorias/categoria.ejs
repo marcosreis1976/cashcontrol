@@ -1,0 +1,30 @@
+<%- include('../parts/head',{title:'CASH - Criando Categoria'}); %>
+<link rel="stylesheet" href="/css/form-pizza.css">
+<form id="form-pizza" method="POST" action="/categorias/store">
+  <h1 name="cash" id="cash">CASH CONTROL</h1>
+  <h1> Nova Categoria </h1>
+  <% if (typeof(erros) != "undefined") { %>
+      <p style="color: red"> ERRO </p>
+      <ul>
+        <% erros.forEach((erro) => { %>
+            <li><%= erro.msg %></li>
+        <% }) %>
+      </ul>
+  <% } %>
+
+  <label>
+    Nome:
+    <input type="text" name="nome" id="nome" placeholder="Digite o nome da categoria">
+  </label>
+
+  <label>
+    Tipo:
+    <select name="tipo" id="tipo">
+        <option selected disabled>Selecione</option>
+        <option value="1">Fixa</option>
+        <option value="2">Variável</option>
+    </select>
+  </label>
+<button type="submit">Salvar</button>
+</form>
+<%- include('../parts/foot'); %>

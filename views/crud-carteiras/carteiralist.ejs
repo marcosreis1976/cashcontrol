@@ -1,0 +1,24 @@
+<%- include('../parts/head',{title:'CASH CONTROL - Lista de Carteiras'}); %>
+<link rel="stylesheet" href="/css/list-pizza.css">
+<div id="list-pizza">
+	<h1 name="cash" id="cash">CASH CONTROL</h1>
+	<a href="/carteiras/create">Adicionar nova Carteira</a>
+	<table>
+		<tbody>
+			<% for(let carteira of carteiras ) { %>
+			<tr>
+				<td><%= carteira.id %></td>
+				<td><%= carteira.nome %></td>
+				<td><%= carteira.tipo %></td>
+				<td>
+					<form method="POST" action="/carteiras/<%= carteira.id %>/delete?_method=DELETE">
+						<button type="submit">Remover</button>
+					</form>
+					<a href="/carteiras/<%= carteira.id %>/edit">Editar</button>
+				</td>
+			</tr>
+			<% } %>
+		</tbody>
+	</table>
+</div>
+<%- include('../parts/foot'); %>

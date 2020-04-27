@@ -1,0 +1,24 @@
+<%- include('../parts/head',{title:'Pizzaria Fantástica - Alterando Usuário'}); %>
+<link rel="stylesheet" href="/css/form-pizza.css">
+<form id="form-pizza" method="POST" action="/users/<%= user.id%>/update?_method=PUT" enctype="multipart/form-data">
+  <label>
+    Nome:
+    <input type="text" name="nome" id="nome" value="<%= user.nome %>" placeholder="Digite o seu nome">
+  </label>
+  <label>
+    E-mail:
+    <input type="email" name="email" id="email" value="<%= user.email %>" placeholder="Digite o seu E-mail">
+  </label>
+  <label>
+    Senha:
+    <input type="password" name="password" id="password" placeholder="Digite sua senha">
+  </label>
+  <label id="labelfoto">
+    Foto:
+    <img src="<%= user.img %>" alt="<%= user.nome %>">
+    <div id="divfoto">Clique para selecionar uma imagem</div>
+    <input type="file" name="img" id="img">
+  </label>
+  <button type="submit">Salvar</button>
+</form>
+<%- include('../parts/foot'); %>

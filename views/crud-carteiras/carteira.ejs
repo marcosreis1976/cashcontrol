@@ -1,0 +1,32 @@
+<%- include('../parts/head',{title:'CASH - Criando Carteira'}); %>
+<link rel="stylesheet" href="/css/form-pizza.css">
+<form id="form-pizza" method="POST" action="/carteiras/store">
+  <h1 name="cash" id="cash">CASH CONTROL</h1>
+  <h1> Nova Carteira </h1>
+  <% if (typeof(erros) != "undefined") { %>
+      <p style="color: red"> ERRO </p>
+      <ul>
+        <% erros.forEach((erro) => { %>
+            <li><%= erro.msg %></li>
+        <% }) %>
+      </ul>
+  <% } %>
+
+  <label>
+    Nome:
+    <input type="text" name="nome" id="nome" placeholder="Digite o nome da carteira">
+  </label>
+
+  <label>
+    Tipo:
+    <select name="tipo" id="tipo">
+        <option selected disabled>Selecione</option>
+        <option value="1">Conta Bancária</option>
+        <option value="2">Carteira Pessoal</option>
+        <option value="3">Cartão de Débito</option>
+        <option value="4">Cartão de Crédito</option>
+    </select>
+  </label>
+<button type="submit">Salvar</button>
+</form>
+<%- include('../parts/foot'); %>

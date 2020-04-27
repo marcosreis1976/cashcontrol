@@ -1,0 +1,53 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<%- include('../parts/head',{title:'CASH - Alterando Despesa'}); %>
+<link rel="stylesheet" href="/css/form-pizza.css">
+<form id="form-pizza" method="POST" action="/despesas/<%= despesa.id%>/update?_method=PUT">
+  <h1 name="cash" id="cash">CASH CONTROL</h1>
+  <h1> Editar Despesa </h1>
+  <% if (typeof(erros) != "undefined") { %>
+      <p style="color: red"> ERRO </p>
+      <ul>
+        <% erros.forEach((erro) => { %>
+            <li><%= erro.msg %></li>
+        <% }) %>
+      </ul>
+  <% } %>
+  
+  <label>
+    Data:
+    <input type="date" name="data" id="data" value="<%= despesa.data_despesa %>" placeholder="Data Despesa">
+  </label>
+
+  <label>
+    Valor:
+    <input type="number" step="0.01" name="valor" id="valor" value="<%= despesa.valor %>" placeholder="Valor da Despesa">
+  </label>
+
+  <label>
+    Categoria:
+    <select name="categoria" id="categoria">
+        <option selected disabled>Selecione</option>
+        <% categorias.forEach((categoria) => { %>
+            <option value=<%= categoria.id %> <%= categoria.id == despesa.categoria_id ? 'selected' : ''%>> <%= categoria.nome %></option>
+        <% }) %> 
+    </select>
+  </label>
+
+  <label>
+    Carteira:
+    <select name="carteira" id="carteira">
+        <option selected disabled>Selecione</option>
+        <% carteiras.forEach((carteira) => { %>
+            <option value=<%= carteira.id %> <%= carteira.id == despesa.carteira_id ? 'selected' : ''%>> <%= carteira.nome %></option>
+        <% }) %> 
+    </select>
+  </label>
+
+  <label>
+    Obs:
+    <input type="text" name="obs" id="obs" value="<%= despesa.obs %>" placeholder="">
+  </label>
+  
+<button type="submit">Salvar</button>
+</form>
+<%- include('../parts/foot'); %>

@@ -1,0 +1,22 @@
+<%- include('../parts/head',{title:'CASH - Criando Usuário'}); %>
+<link rel="stylesheet" href="/css/form-pizza.css">
+<form id="form-pizza" method="POST" action="/users/store">
+  <h1 name="cash" id="cash">CASH CONTROL</h1>
+  <label>
+    Nome:
+    <input type="text" name="nome" id="nome" placeholder="Digite o seu nome">
+  </label>
+  <label>
+    E-mail:
+    <input type="email" name="email" id="email" placeholder="Digite o seu E-mail">
+  </label>
+  <label>
+    Senha:
+    <input type="password" name="password" id="password" placeholder="Digite sua senha">
+  </label>
+  <button type="submit">Salvar</button>
+</form>
+<form id="form-pizza" method="GET" action="/login">
+  <button type="submit">Entrar</button>
+</form>
+<%- include('../parts/foot'); %>
