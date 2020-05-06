@@ -7,8 +7,15 @@ html{
 	font-size: 16px;
 }
 
-body {
-	margin: 0;
+body{
+  font-family: 'Roboto', sans-serif;
+	--primary-color: #2F303A;
+	--bg-color: #c4c4c4;
+  --white-color: #fff;
+  --green-color: #2FB42C;
+  --red-color: #EA4335;
+  --blue-color: #2C8BB4;
+  margin: 0;
 }
 
 body::before{
@@ -22,3 +29,89 @@ body::before{
 	z-index: -1;
 }
 
+button{
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+}
+
+h1{
+	font-weight: 500;
+	font-size: 22px;
+	color: #000;
+	margin: 0 0 10px;
+}
+
+/* BUTTONS */
+.btn{
+	display: inline-block;
+	padding: .75rem 1.5rem;
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: 700;
+	border-radius: 50px;
+	box-shadow: 4px 4px 4px 0 #000;
+}
+.btn.white{
+	color: var(--primary-color);
+	background-color: var(--white-color);
+}
+
+/* GRID */
+.container{
+	min-height: calc(100vh - 60px);
+	padding: 1rem;
+	background-color: var(--bg-color);
+}
+
+/* GENERIC */
+.container-button{
+  padding: 1rem 0;
+  background-color: var(--primary-color);
+  text-align: center;
+}
+.item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+	background-color: var(--white-color);
+	color: var(--primary-color);
+  border-radius: 10px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.item.head{
+	background-color: var(--primary-color);
+	color: var(--white-color);
+}
+.item p{
+	margin: 0;
+}
+.item .name, .item .type{
+  width: calc(40% - 10px);
+}
+.item .buttons{
+  width: 20%;
+  display: flex;
+  align-items: center;
+}
+.item .buttons > form, .item .buttons > a{
+  width: 50%;
+}
+.item button{
+  width: 100%;
+}
+.item img{
+  width: 25px;
+}

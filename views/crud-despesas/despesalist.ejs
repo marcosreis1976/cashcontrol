@@ -1,39 +1,35 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Despesas'}); %>
-<link rel="stylesheet" href="/css/list-pizza.css">
-<div id="list-pizza">
-	<h1 name="cash" id="cash">CASH CONTROL</h1>
-	<a href="/despesas/create">Adicionar nova Despesa</a>
-	<table>
-		<thead>
-			<tr>
-				<td>Id</td>
-				<td>Data</td>
-                <td>Categoria</td>
-				<td>Carteira</td>
-				<td>Valor</td>
-                <td>Obs</td>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody>
-			<% for(let despesa of despesas ) { %>
-			
-			<tr>
-				<td><%= despesa.id %></td>
-				<td><%= despesa.data_despesa %></td>
-                <td><%= despesa.categoria.nome %></td>
-				<td><%= despesa.carteira.nome %></td>
-				<td><%= despesa.valor %></td>
-                <td><%= despesa.obs %></td>
-				<td>
-					<form method="POST" action="/despesas/<%= despesa.id %>/delete?_method=DELETE">
-						<button type="submit">Remover</button>
-					</form>
-					<a href="/despesas/<%= despesa.id %>/edit">Editar</button>
-				</td>
-			</tr>
-			<% } %>
-		</tbody>
-	</table>
+<link rel="stylesheet" href="/css/despesas/styles.css">
+<div class="container-button">	
+	<a class="btn white" href="/despesas/create">Adicionar nova Despesa</a>
 </div>
+<section class="container">
+	<div class="list-despesas">
+		<h1>Despesas:</h1>
+		<div class="item head">
+			<div class="category"><p>Categoria</p></div>
+			<div class="value"><p>Valor</p></div>
+			<div class="wallet"><p>Carteira</p></div>
+			<div class="date"><p>Data</p></div>
+			<div class="note">Obs</div>
+		</div>
+		<% for(let despesa of despesas ) { %>
+			<div class="item">
+				<div class="category"><p><%= despesa.categoria.nome %></p></div>
+				<div class="value"><p><%= despesa.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></p></div>
+				<div class="wallet"><p><%= despesa.carteira.nome %></p></div>
+				<div class="date"><p><%= despesa.data_despesa %></p></div>
+				<div class="note"><p><%= despesa.obs %></p></div>
+				<div class="buttons">
+					<a href="/despesas/<%= despesa.id %>/edit">
+						<img src="/img/icons/edit-tools.svg" alt="Icone de editar">
+					</a>
+					<form method="POST" action="/despesas/<%= despesa.id %>/delete?_method=DELETE">
+						<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+					</form>
+				</div>
+			</div>
+			<% } %>
+	</div>
+</section>
 <%- include('../parts/foot'); %>

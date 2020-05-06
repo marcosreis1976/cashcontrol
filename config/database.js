@@ -1,6 +1,7 @@
 module.exports = {
     dialect: 'mysql',
     host: 'localhost',
+    port: '3307',
     username: 'root',
     password: 'erisintel',
     database: 'cash',
