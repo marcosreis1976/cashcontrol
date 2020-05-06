@@ -12,6 +12,7 @@ class Categorias extends Model {
 
     static associate(models) {
         this.belongsTo(models.Usuario, { foreignKey: 'usuario_id', as: 'usuario2'});
+        this.hasMany(models.Metas, { foreignKey: 'categoria_id', as: 'meta'});
     }
 }
 

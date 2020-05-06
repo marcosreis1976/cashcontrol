@@ -1,0 +1,92 @@
+<%- include('../parts/head',{title:'CASH CONTROL - Lista de Metas'}); %>
+<link rel="stylesheet" href="/css/list-pizza.css">
+<div id="list-pizza">
+	<h1 name="cash" id="cash">CASH CONTROL</h1>
+	<form method="POST" action="/metas/seek">
+		<%if (typeof(erros) != "undefined") { %>
+			<p style="color: red"> ERRO </p>
+			<ul>
+			  <% erros.forEach((erro) => { %>
+				  <li><%= erro.msg %></li>
+			  <% }) %>
+			</ul>
+		  <% } %>
+
+		<div>
+			<label>
+				Ano:
+				<input type="number" name="ano" id="ano" value="<%= Periodo.Ano %>" placeholder="ano da meta">
+			</label>
+			
+			<label>
+				Mês:
+				<input type="number" name="mes" id="mes" value="<%= Periodo.Mes %>" placeholder="mês da meta">
+			</label>
+		
+		</div>
+		<button type="submit">Buscar</button>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Categoria</td>
+				<td>Valor Previsto</td>
+				<td>Valor Gasto</td>
+                <td>(%) Gasto</td>
+				<td>
+					<form method="POST" action="/metas/proximomes">
+						<button type="submit">Copiar para Próximo Mês</button>
+					</form>
+				</td>
+			</tr>
+		</thead>
+		<%
+			var totalprevisto = 0;
+			var totalgasto = 0;
+		%>
+		<tbody>
+			<% for(let categoria of categorias ) {%>
+			
+			<tr>
+				<%
+					totalprevisto = totalprevisto + Number(categoria.valorprevisto);
+					totalgasto = totalgasto + Number(categoria.valorgasto);
+				%>
+				<td><%= categoria.id %></td>
+                <td><%= categoria.nome %></td>
+				<td><%= categoria.valorprevisto %></td>
+				<td><%= categoria.valorgasto %></td>
+                <td><%= categoria.percentualgasto %></td>
+				<td>
+					<%if(!categoria.meta_id) {%>
+						<form method="GET" action="/metas/<%= categoria.id %>/create">
+							<button type="submit">Criar</button>
+						</form>
+					<%}
+					else {
+					%>
+						<form method="POST" action="/metas/<%= categoria.meta_id %>/delete?_method=DELETE">
+							<button type="submit">Remover</button>
+						</form>
+						<a href="/metas/<%= categoria.meta_id %>/edit">Editar</button>
+					<%}%>
+				</td>
+			</tr>
+			<% } %>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td></td>
+				<td>Totais:</td>
+				<td><%= totalprevisto %></td>
+				<td><%= totalgasto %></td>
+				<td><%= totalprevisto>0 ? Math.round((totalgasto/totalprevisto)*100,2): 0 %></td>
+				<td>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+<%- include('../parts/foot'); %>

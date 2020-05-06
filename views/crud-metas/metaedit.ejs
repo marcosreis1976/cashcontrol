@@ -1,0 +1,43 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<%- include('../parts/head',{title:'CASH - Alterando Meta'}); %>
+<link rel="stylesheet" href="/css/form-pizza.css">
+<form id="form-pizza" method="POST" action="/metas/<%= meta.id%>/update?_method=PUT">
+  <h1 name="cash" id="cash">CASH CONTROL</h1>
+  <h1> Editar Meta </h1>
+  <% if (typeof(erros) != "undefined") { %>
+      <p style="color: red"> ERRO </p>
+      <ul>
+        <% erros.forEach((erro) => { %>
+            <li><%= erro.msg %></li>
+        <% }) %>
+      </ul>
+  <% } %>
+  
+  <label>
+    Ano:
+    <input type="number" name="ano" id="ano" value="<%= meta.ano %>" readonly>
+  </label>
+
+  <label>
+    Mês:
+    <input type="number" name="mes" id="mes" value="<%= meta.mes %>" readonly>
+  </label>
+
+  <label>
+    Categoria:
+    <select name="categoria" id="categoria" readonly>
+        <option selected disabled>Selecione</option>
+        <% categorias.forEach((categoria) => { %>
+            <option value=<%= categoria.id %> <%= categoria.id == meta.categoria_id ? 'selected' : ''%>> <%= categoria.nome %></option>
+        <% }) %> 
+    </select>
+  </label>
+
+  <label>
+    Valor Previsto:
+    <input type="number" step="0.01" name="valorprevisto" id="valorprevisto" value="<%= meta.valorprevisto %>" placeholder="Valor Previsto">
+  </label>
+  
+<button type="submit">Salvar</button>
+</form>
+<%- include('../parts/foot'); %>

@@ -13,6 +13,7 @@ var UserRouter = require('./routes/UserRouter');
 var CarteiraRouter = require('./routes/CarteirasRouter');
 var CategoriaRouter = require('./routes/CategoriasRouter');
 var DespesaRouter = require('./routes/DespesasRouter');
+var MetaRouter = require('./routes/MetasRouter');
 
 require('./database/index');
 
@@ -37,6 +38,7 @@ app.use('/', UserRouter);
 app.use('/', CarteiraRouter);
 app.use('/', CategoriaRouter);
 app.use('/', DespesaRouter);
+app.use('/', MetaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
