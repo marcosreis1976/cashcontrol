@@ -1,24 +1,29 @@
 <%- include('../parts/head',{title:'CASH CONTROL - Lista de Carteiras'}); %>
-<link rel="stylesheet" href="/css/list-pizza.css">
-<div id="list-pizza">
-	<h1 name="cash" id="cash">CASH CONTROL</h1>
-	<a href="/carteiras/create">Adicionar nova Carteira</a>
-	<table>
-		<tbody>
-			<% for(let carteira of carteiras ) { %>
-			<tr>
-				<td><%= carteira.id %></td>
-				<td><%= carteira.nome %></td>
-				<td><%= carteira.tipo %></td>
-				<td>
-					<form method="POST" action="/carteiras/<%= carteira.id %>/delete?_method=DELETE">
-						<button type="submit">Remover</button>
-					</form>
-					<a href="/carteiras/<%= carteira.id %>/edit">Editar</button>
-				</td>
-			</tr>
-			<% } %>
-		</tbody>
-	</table>
+<div class="container-button">
+	<a class="btn white" href="/carteiras/create">Adicionar nova Carteira</a>
 </div>
+<section class="container">
+	<h1>Carteiras:</h1>
+	<div id="list-carteiras">
+		<div class="item head">
+			<div class="name"><p>Nome:</p></div>
+			<div class="type"><p>Tipo:</p></div>
+			<div class="buttons"></div>
+		</div>
+		<% for(let carteira of carteiras ) { %>
+			<div class="item">
+				<div class="name"><p><%= carteira.nome %></p></div>
+				<div class="type"><p><%= carteira.tipo %></p></div>
+				<div class="buttons">
+					<a href="/carteiras/<%= carteira.id %>/edit">
+						<img src="/img/icons/edit-tools.svg" alt="Icone de editar">
+					</a>
+					<form method="POST" action="/carteiras/<%= carteira.id %>/delete?_method=DELETE">
+						<button type="submit"><img src="/img/icons/interface.svg" alt="Icone de remover"></button>
+					</form>
+				</div>
+			</div>
+		<% } %>
+	</div>
+</section>
 <%- include('../parts/foot'); %>

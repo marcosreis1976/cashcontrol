@@ -1,0 +1,17 @@
+.list-despesas .item{
+  flex-wrap: wrap;
+}
+.list-despesas .item > div{
+  width: 50%;
+  margin-bottom: 5px;
+}
+.list-despesas .item .value, .list-despesas .item .date{
+  text-align: right;
+}
+.list-despesas .item .note{
+  width: 100%;
+}
+.list-despesas .item .buttons{
+  width: 70px;
+  margin-left: auto;
+}
