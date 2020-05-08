@@ -56,8 +56,8 @@
 				%>
 				<td><%= categoria.id %></td>
                 <td><%= categoria.nome %></td>
-				<td><%= categoria.valorprevisto %></td>
-				<td><%= categoria.valorgasto %></td>
+				<td><%= categoria.valorprevisto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></td>
+				<td><%= categoria.valorgasto.toLocaleString('pt-br', { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }) %></td>
                 <td><%= categoria.percentualgasto %></td>
 				<td>
 					<%if(!categoria.meta_id) {%>
