@@ -200,7 +200,7 @@ module.exports = {
 
         const despesas = await Despesa.findAll({
             attributes: ['id', 'valor', 'obs', [Sequelize.fn('date_format', Sequelize.col('data_despesa'), '%d/%m/%Y'), 'data_despesa']],
-            where: { usuario_id : id },
+            where: { usuario_id : usuario_id },
             include: [
                     {
                     model: Carteira,
